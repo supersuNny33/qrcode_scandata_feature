@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Information</title>
+</head>
+<body>
+    <h1>Product Information</h1>
+    <p><strong>Product Name:</strong> <span id="product_name"></span></p>
+    <p><strong>Brand:</strong> <span id="brand"></span></p>
+    <p><strong>Manufacturer:</strong> <span id="manufacturer"></span></p>
+    <p><strong>Description:</strong> <span id="description"></span></p>
+
+    <h2>Ingredients:</h2>
+    <ul id="ingredients">
+    </ul>
+
+    <h2>Usage Instructions:</h2>
+    <p><span id="usage_instructions"></span></p>
+
+    <h2>Benefits:</h2>
+    <ul id="benefits">
+    </ul>
+
+    <h2>Packaging:</h2>
+    <p><strong>Quantity:</strong> <span id="quantity"></span> ml</p>
+    <p><strong>Type:</strong> <span id="type"></span></p>
+
+    <h2>Storage Instructions:</h2>
+    <p><span id="storage_instructions"></span></p>
+
+    <h2>Warnings:</h2>
+    <p><span id="warnings"></span></p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Replace '111111' with the actual scanned QR code
+            const qrCode = '111111';
+            fetch(`/api/getProductInfo/${qrCode}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('product_name').textContent = data.product_name;
+                    document.getElementById('brand').textContent = data.brand;
+                    document.getElementById('manufacturer').textContent = data.manufacturer;
+                    document.getElementById('description').textContent = data.description;
+
+                    const ingredientsList = document.getElementById('ingredients');
+                    data.ingredients.forEach(ingredient => {
+                        const li = document.createElement('li');
+                        li.textContent = ingredient;
+                        ingredientsList.appendChild(li);
+                    });
+
+                    document.getElementById('usage_instructions').textContent = data.usage_instructions;
+
+                    const benefitsList = document.getElementById('benefits');
+                    data.benefits.forEach(benefit => {
+                        const li = document.createElement('li');
+                        li.textContent = benefit;
+                        benefitsList.appendChild(li);
+                    });
+
+                    document.getElementById('quantity').textContent = data.packaging.quantity;
+                    document.getElementById('type').textContent = data.packaging.type;
+                    document.getElementById('storage_instructions').textContent = data.storage_instructions;
+                    document.getElementById('warnings').textContent = data.warnings;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        });
+    </script>
+</body>
+</html>

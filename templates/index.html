@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        p, ul {
+            font-size: 16px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        #product_info {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Product Information</h1>
+    </header>
+
+    <div class="container">
+        <div id="product_info">
+            <h2>Product Details</h2>
+            <p><strong>Product Name:</strong> <span id="product_name"></span></p>
+            <p><strong>Brand:</strong> <span id="brand"></span></p>
+            <p><strong>Manufacturer:</strong> <span id="manufacturer"></span></p>
+            <p><strong>Description:</strong> <span id="description"></span></p>
+
+            <h2>Ingredients:</h2>
+            <ul id="ingredients">
+            </ul>
+
+            <h2>Usage Instructions:</h2>
+            <p><span id="usage_instructions"></span></p>
+
+            <h2>Benefits:</h2>
+            <ul id="benefits">
+            </ul>
+
+            <h2>Packaging:</h2>
+            <p><strong>Quantity:</strong> <span id="quantity"></span></p>
+            <p><strong>Type:</strong> <span id="type"></span></p>
+
+            <h2>Storage Instructions:</h2>
+            <p><span id="storage_instructions"></span></p>
+
+            <h2>Warnings:</h2>
+            <p><span id="warnings"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Replace this object with the actual data from your MongoDB document
+        var productData = {
+            "product_name": "Ayurvedic Herbal Oil",
+            "brand": "HealthyHerbs",
+            "manufacturer": "Natural Remedies Pvt. Ltd.",
+            "description": "A rejuvenating Ayurvedic herbal oil formulated to promote hair and scalp health.",
+            "ingredients": [
+                "Coconut Oil",
+                "Bhringraj (Eclipta Alba) Extract",
+                "Amla (Indian Gooseberry) Extract",
+                "Brahmi (Bacopa Monnieri) Extract",
+                "Neem (Azadirachta Indica) Extract",
+                "Rosemary Essential Oil",
+                "Lavender Essential Oil",
+                "Tulsi (Holy Basil) Extract"
+            ],
+            "usage_instructions": "Apply a small amount of oil to the scalp and hair. Gently massage in circular motions. Leave it on for at least 2 hours or overnight for best results. Wash off with a mild shampoo.",
+            "benefits": [
+                "Strengthens hair roots and reduces hair fall",
+                "Promotes hair growth and thickness",
+                "Soothes scalp irritation and dandruff",
+                "Adds shine and luster to hair",
+                "Improves blood circulation to the scalp",
+                "Nourishes hair with natural herbs and oils"
+            ],
+            "packaging": {
+                "quantity": "200 ml",
+                "type": "Bottle"
+            },
+            "storage_instructions": "Store in a cool, dry place away from direct sunlight.",
+            "warnings": "For external use only. Avoid contact with eyes. Conduct a patch test before full application."
+        };
+
+        // Fill in the HTML elements with the data
+        document.getElementById('product_name').textContent = productData.product_name;
+        document.getElementById('brand').textContent = productData.brand;
+        document.getElementById('manufacturer').textContent = productData.manufacturer;
+        document.getElementById('description').textContent = productData.description;
+
+        var ingredientsList = document.getElementById('ingredients');
+        productData.ingredients.forEach(function (ingredient) {
+            var li = document.createElement('li');
+            li.textContent = ingredient;
+            ingredientsList.appendChild(li);
+        });
+
+        document.getElementById('usage_instructions').textContent = productData.usage_instructions;
+
+        var benefitsList = document.getElementById('benefits');
+        productData.benefits.forEach(function (benefit) {
+            var li = document.createElement('li');
+            li.textContent = benefit;
+            benefitsList.appendChild(li);
+        });
+
+        document.getElementById('quantity').textContent = productData.packaging.quantity;
+        document.getElementById('type').textContent = productData.packaging.type;
+        document.getElementById('storage_instructions').textContent = productData.storage_instructions;
+        document.getElementById('warnings').textContent = productData.warnings;
+
+        // Display the product information
+        document.getElementById('product_info').style.display = 'block';
+    </script>
+</body>
+</html>
