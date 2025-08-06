@@ -13,7 +13,7 @@ popup_start_time = None  # Variable to store the time when the popup was opened
 message_duration = 2  # Set the message display duration to 5 seconds
 
 # Connect to MongoDB
-client = pymongo.MongoClient("mongodb+srv://supersuNny33:zNV2hstjTIIPDAfn@dtg.bsx7n7j.mongodb.net/")  # Replace with your MongoDB URI
+client = pymongo.MongoClient("#############")  # Replace with your MongoDB URI
 db = client["QRcode"]  # Replace with your database name
 collection = db["qrcodelist"]  # Replace with your collection name
 
@@ -70,3 +70,4 @@ while True:
 # Release the camera and close the OpenCV window
 cap.release()
 cv2.destroyAllWindows()
+
